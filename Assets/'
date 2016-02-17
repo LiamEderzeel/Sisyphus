@@ -9,16 +9,13 @@ public class stack : MonoBehaviour {
 	void Start ()
     {
 
-        Spawn();
 	}
-
 	void Update ()
     {
 
 	}
-
     void Spawn ()
     {
-        GameObject obj = Instantiate(block, gameObject.transform.position + spawnPos, Quaternion.identity) as GameObject;
+        obj = Instantiate(block, gameObject.transform.position + spawnPos, Quaturnion.indentity);
     }
 }

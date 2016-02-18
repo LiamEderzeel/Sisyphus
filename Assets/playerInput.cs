@@ -14,6 +14,8 @@ public class playerInput : MonoBehaviour {
     private float screenHeight;
     private State _state;
     private block _block;
+    private bool _shooting = true;
+    private bool _select = true;
 
 	void Start ()
     {
@@ -24,35 +26,37 @@ public class playerInput : MonoBehaviour {
         screenHeight = 2f * cam.orthographicSize;
         screenWidth = screenHeight * cam.aspect;
         _stackScript = stack.GetComponent<stack>();
-            letter.SetActive(false);
+        letter.SetActive(false);
     }
 
     void Update ()
     {
         if(_state == State.main)
         {
-            if ( Input.GetMouseButtonDown (0)){
+            if (Input.GetMouseButtonDown (0) && _select){
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if ( Physics.Raycast (ray,out hit,100.0f)) {
+                    Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
                     if(hit.transform.tag == "block")
                     {
-                        Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
                         _block = hit.transform.gameObject.GetComponent<block>();
                         ChangeState(State.letter);
                     }
                 }
+                _select = false;
             }
         }
 
         if(_state == State.shooting)
         {
-            if ( Input.GetMouseButtonDown (0))
+            if ( Input.GetMouseButtonDown (0) && _shooting)
             {
                 print("shoot");
                 _bullet.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 _bullet.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(-1f,0.5f,1f) * _force);
                 ChangeState(State.main);
+                _shooting = false;
             }
         }
     }
@@ -60,8 +64,9 @@ public class playerInput : MonoBehaviour {
     private IEnumerator ToShooting()
     {
         _stackScript.SavePosition();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         _stackScript.ActivatePhysics();
+        _shooting = true;
     }
 
     private IEnumerator ToMain()
@@ -70,8 +75,9 @@ public class playerInput : MonoBehaviour {
         _stackScript.DeactivatePhysics();
         _stackScript.ReturnPosition();
         _bullet.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        _bullet.transform.position = _bulletStartPos;
+        _bullet.transform.localPosition = _bulletStartPos;
         _bullet.transform.rotation = Quaternion.identity;
+        _select = true;
     }
 
     private void ToSending()
@@ -80,6 +86,7 @@ public class playerInput : MonoBehaviour {
         _block.ActivatePhysics();
         _block.Nocolider();
         _block.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0,0,1f) * _force);
+        _block.transform.parent = null;
         ChangeState(State.shooting);
     }
 

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class block : MonoBehaviour {
 
+    private Transform _stack;
     private Rigidbody _rigidbody;
     private Collider _collider;
     private Vector3 _posInStack;
@@ -14,6 +15,7 @@ public class block : MonoBehaviour {
 
 	private void Start ()
     {
+        _stack = transform.parent;
         _rigidbody = gameObject.GetComponent<Rigidbody>();
         _collider = gameObject.GetComponent<Collider>();
         DeactivatePhysics();
@@ -21,7 +23,7 @@ public class block : MonoBehaviour {
 
 	private void Update ()
     {
-        if(gameObject.transform.position.y < -10f)
+        if(gameObject.transform.position.y < -20f)
         {
             Reset();
         }
@@ -51,6 +53,7 @@ public class block : MonoBehaviour {
 
     private void Reset ()
     {
+        transform.parent = _stack;
         gameObject.SetActive(false);
         gameObject.transform.localPosition = _holding;
         gameObject.transform.rotation = Quaternion.identity;
@@ -69,6 +72,12 @@ public class block : MonoBehaviour {
         _collider.enabled = false;
         yield return new WaitForSeconds(1);
         _collider.enabled = true;
+    }
+
+    public void UnParrent()
+    {
+
+        transform.parent = null;
     }
 }
 

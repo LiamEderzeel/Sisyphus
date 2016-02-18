@@ -19,6 +19,17 @@ public class stack : MonoBehaviour {
         }
     }
 
+    public void OnTriggerExit (Collider collider)
+    {
+            print("unparent");
+        if(collider.tag == "block")
+        {
+            print("unparent");
+            //transform.parent = null;
+            collider.GetComponent<block>().UnParrent();
+        }
+    }
+
 
     private void Start()
     {

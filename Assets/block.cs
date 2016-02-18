@@ -5,7 +5,12 @@ public class block : MonoBehaviour {
 
     private Rigidbody _rigidbody;
     private Collider _collider;
+    private Vector3 _posInStack;
     private Vector3 _holding = new Vector3(0,0,0);
+    public Vector3 holding
+    {
+        set{_holding = value;}
+    }
 
 	private void Start ()
     {
@@ -22,6 +27,17 @@ public class block : MonoBehaviour {
         }
 	}
 
+    public void SavePosition()
+    {
+    _posInStack = gameObject.transform.position;
+    }
+
+    public void ReturnPosition()
+    {
+        gameObject.transform.localPosition = new Vector3(0f,_posInStack.y,0f);
+        gameObject.transform.rotation = Quaternion.identity;
+    }
+
     public void DeactivatePhysics()
     {
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX;
@@ -36,7 +52,7 @@ public class block : MonoBehaviour {
     private void Reset ()
     {
         gameObject.SetActive(false);
-        gameObject.transform.position = _holding;
+        gameObject.transform.localPosition = _holding;
         gameObject.transform.rotation = Quaternion.identity;
         DeactivatePhysics();
         _rigidbody.velocity = Vector3.zero;

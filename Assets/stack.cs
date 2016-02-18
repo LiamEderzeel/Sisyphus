@@ -28,6 +28,50 @@ public class stack : MonoBehaviour {
         }
     }
 
+    public void ActivatePhysics()
+    {
+        for (int i = 0; i < _blocks.Count; ++i)
+        {
+            if ( _blocks[i].activeInHierarchy )
+            {
+                _blocks[i].GetComponent<block>().ActivatePhysics();
+            }
+        }
+    }
+
+    public void DeactivatePhysics()
+    {
+        for (int i = 0; i < _blocks.Count; ++i)
+        {
+            if ( _blocks[i].activeInHierarchy )
+            {
+                _blocks[i].GetComponent<block>().DeactivatePhysics();
+            }
+        }
+    }
+
+    public void SavePosition()
+    {
+        for (int i = 0; i < _blocks.Count; ++i)
+        {
+            if ( _blocks[i].activeInHierarchy )
+            {
+                _blocks[i].GetComponent<block>().SavePosition();
+            }
+        }
+    }
+
+    public void ReturnPosition()
+    {
+        for (int i = 0; i < _blocks.Count; ++i)
+        {
+            if ( _blocks[i].activeInHierarchy )
+            {
+                _blocks[i].GetComponent<block>().ReturnPosition();
+            }
+        }
+    }
+
     public GameObject Spawn()
     {
         stackSize++;
@@ -49,7 +93,7 @@ public class stack : MonoBehaviour {
     {
         GameObject obj = GameObject.Instantiate( _block ) as GameObject;
         _blocks.Add ( obj );
-        obj.transform.parent = gameObject.transform;
+        obj.transform.SetParent(gameObject.transform,false);
         obj.SetActive( false );
         return obj;
     }

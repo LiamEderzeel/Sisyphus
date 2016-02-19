@@ -5,10 +5,14 @@ using System.Collections.Generic;
 public class stack : MonoBehaviour {
 
     private Vector3 spawnPos = new Vector3(0, 6f, 0);
-    private int stackSize;
 
     [SerializeField] private GameObject _block;
     [SerializeField] private List<GameObject> _blocks = new List<GameObject>();
+    [SerializeField] private int _stackSize;
+    public int StackSize
+    {
+        get{return _stackSize;}
+    }
 
     void Update ()
     {
@@ -17,6 +21,19 @@ public class stack : MonoBehaviour {
             GameObject obj = Spawn();
             obj.transform.position += spawnPos;
         }
+    }
+
+    private int CountStack()
+    {
+        int count = 0;
+            foreach(Transform child in transform)
+            {
+                if ( child.gameObject.activeInHierarchy )
+                {
+                    count++;
+                }
+            }
+        return count;
     }
 
     public void OnTriggerExit (Collider collider)
@@ -74,6 +91,7 @@ public class stack : MonoBehaviour {
 
     public void ReturnPosition()
     {
+        _stackSize = CountStack();
         for (int i = 0; i < _blocks.Count; ++i)
         {
             if ( _blocks[i].activeInHierarchy )
@@ -85,18 +103,19 @@ public class stack : MonoBehaviour {
 
     public GameObject Spawn()
     {
-        stackSize++;
         for (int i = 0; i < _blocks.Count; ++i)
         {
             if ( !_blocks[i].activeInHierarchy )
             {
                 _blocks[i].SetActive(true);
+        _stackSize = CountStack();
                 return _blocks[i];
             }
         }
 
         GameObject obj = CreateNew ();
         obj.SetActive (true);
+        _stackSize = CountStack();
         return obj;
     }
 
@@ -105,6 +124,7 @@ public class stack : MonoBehaviour {
         GameObject obj = GameObject.Instantiate( _block ) as GameObject;
         _blocks.Add ( obj );
         obj.transform.SetParent(gameObject.transform,false);
+        obj.gameObject.transform.Rotate(0,180f,0);
         obj.SetActive( false );
         return obj;
     }

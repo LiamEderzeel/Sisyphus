@@ -29,7 +29,7 @@ public class playerInput : MonoBehaviour {
         letter.SetActive(false);
     }
 
-    void Update ()
+    private void Update ()
     {
         if(_state == State.main)
         {
@@ -42,9 +42,9 @@ public class playerInput : MonoBehaviour {
                     {
                         _block = hit.transform.gameObject.GetComponent<block>();
                         ChangeState(State.letter);
+                        _select = false;
                     }
                 }
-                _select = false;
             }
         }
 

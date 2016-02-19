@@ -36,17 +36,25 @@ public class block : MonoBehaviour {
 
     public void ReturnPosition()
     {
-        gameObject.transform.localPosition = new Vector3(0f,_posInStack.y,0f);
-        gameObject.transform.rotation = Quaternion.identity;
+        if(transform.parent == _stack)
+        {
+            gameObject.transform.localPosition = new Vector3(0f,_posInStack.y,0f);
+            gameObject.transform.rotation = Quaternion.identity;
+            gameObject.transform.Rotate(0,180f,0);
+        }
     }
 
-    public void DeactivatePhysics()
+    public void DeactivatePhysics(bool reset = false)
     {
-        _rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX;
+        if(transform.parent == _stack || reset)
+        {
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX;
+        }
     }
 
     public void ActivatePhysics()
     {
+        _collider.enabled = true;
         _rigidbody.constraints = RigidbodyConstraints.None;
         //_rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX;
     }
@@ -57,7 +65,8 @@ public class block : MonoBehaviour {
         gameObject.SetActive(false);
         gameObject.transform.localPosition = _holding;
         gameObject.transform.rotation = Quaternion.identity;
-        DeactivatePhysics();
+        gameObject.transform.Rotate(0,180f,0);
+        DeactivatePhysics(true);
         _rigidbody.velocity = Vector3.zero;
     }
 
@@ -70,13 +79,12 @@ public class block : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.05f);
         _collider.enabled = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         _collider.enabled = true;
     }
 
     public void UnParrent()
     {
-
         transform.parent = null;
     }
 }

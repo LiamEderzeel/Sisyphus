@@ -1,38 +1,36 @@
 fileFormatVersion: 2
-guid: 26d11ebe9ddb24847a7aa18d02b5a33d
-timeCreated: 1455803199
+guid: efbaaaf45b2d6497b962f9fa69d59dec
+timeCreated: 1455881110
 licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: joint16
-    100004: joint17
-    100006: joint18
-    100008: joint19
-    100010: joint20
-    100012: joint21
-    100014: joint22
-    100016: joint23
-    100018: joint24
-    100020: joint25
+    100000: joint16
+    100002: joint17
+    100004: joint18
+    100006: joint19
+    100008: joint20
+    100010: joint21
+    100012: joint22
+    100014: joint23
+    100016: joint24
+    100018: joint25
+    100020: //RootNode
     100022: pCube4
-    400000: //RootNode
-    400002: joint16
-    400004: joint17
-    400006: joint18
-    400008: joint19
-    400010: joint20
-    400012: joint21
-    400014: joint22
-    400016: joint23
-    400018: joint24
-    400020: joint25
+    400000: joint16
+    400002: joint17
+    400004: joint18
+    400006: joint19
+    400008: joint20
+    400010: joint21
+    400012: joint22
+    400014: joint23
+    400016: joint24
+    400018: joint25
+    400020: //RootNode
     400022: pCube4
     4300000: pCube4
-    7400000: Heavy_Run1
-    7400002: Take 001
-    7400004: Heavy_Run2
+    7400000: Take 001
     9500000: //RootNode
     13700000: pCube4
   materials:
@@ -42,31 +40,29 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 0
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 0
-    animationRotationError: 5
-    animationPositionError: 5
-    animationScaleError: 5
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Heavy_Run1
+      name: Take 001
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 43
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -107,59 +103,6 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Heavy_Run2
-      takeName: Take 001
-      firstFrame: 44
-      lastFrame: 119
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: joint16
-        weight: 1
-      - path: joint16/joint17
-        weight: 1
-      - path: joint16/joint17/joint18
-        weight: 1
-      - path: joint16/joint17/joint18/joint19
-        weight: 1
-      - path: joint16/joint20
-        weight: 1
-      - path: joint16/joint20/joint21
-        weight: 1
-      - path: joint16/joint20/joint21/joint22
-        weight: 1
-      - path: joint16/joint23
-        weight: 1
-      - path: joint16/joint23/joint24
-        weight: 1
-      - path: joint16/joint23/joint24/joint25
-        weight: 1
-      - path: pCube4
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -180,19 +123,20 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 3
+    tangentImportMode: 1
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
     skeleton: []
-    armTwist: 0.5
-    foreArmTwist: 0.5
-    upperLegTwist: 0.5
-    legTwist: 0.5
-    armStretch: 0.05
-    legStretch: 0.05
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0

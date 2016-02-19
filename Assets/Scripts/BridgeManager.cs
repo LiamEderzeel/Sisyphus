@@ -29,7 +29,7 @@ public class BridgeManager : MonoBehaviour {
     {
         if(_bridgParts[4] == bridge)
         {
-            _bridgParts[0].gameObject.transform.position += new Vector3(0,0,-63f);
+            _bridgParts[0].gameObject.transform.position += new Vector3(0,0,-72f);
             _bridgParts.Add(_bridgParts[0]);
             _bridgParts.RemoveAt(0);
 

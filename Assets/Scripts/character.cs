@@ -8,7 +8,6 @@ public class character : MonoBehaviour {
 	}
 
 	void Update () {
-        gameObject.transform.Translate(new Vector3(0.7f,0,0) * Time.deltaTime * 1f);
 
 	}
 }

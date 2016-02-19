@@ -3,6 +3,8 @@ using System.Collections;
 
 public class block : MonoBehaviour {
 
+    private Transform _letterGraphic;
+    public LetterAnimation _letterAnimation;
     private Transform _stack;
     private Rigidbody _rigidbody;
     private Collider _collider;
@@ -15,6 +17,8 @@ public class block : MonoBehaviour {
 
 	private void Start ()
     {
+        _letterGraphic = transform.GetChild(0);
+        _letterAnimation = _letterGraphic.GetComponent<LetterAnimation>();
         _stack = transform.parent;
         _rigidbody = gameObject.GetComponent<Rigidbody>();
         _collider = gameObject.GetComponent<Collider>();

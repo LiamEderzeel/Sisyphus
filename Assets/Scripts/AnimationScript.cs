@@ -28,6 +28,7 @@ public class AnimationScript : MonoBehaviour
         AnimatorStateInfo stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
         if (_blockCarryCount <= 1)
         {
+            gameObject.transform.Translate(new Vector3(1.9f,0,0) * Time.deltaTime * 1f);
             Anim.SetTrigger("Light_Run1");
             Anim.ResetTrigger("Normal_Run1");
             Anim.ResetTrigger("Heavy_Run1");
@@ -35,11 +36,13 @@ public class AnimationScript : MonoBehaviour
         }
         else if (_blockCarryCount >= 2 && _blockCarryCount <= 6)
         {
+            gameObject.transform.Translate(new Vector3(0.8f,0,0) * Time.deltaTime * 1f);
             Anim.SetTrigger("Normal_Run1");
             Anim.ResetTrigger("Light_Run1");
             Anim.ResetTrigger("Heavy_Run1");
         } else if (_blockCarryCount >= 7)
         {
+            gameObject.transform.Translate(new Vector3(0.75f,0,0) * Time.deltaTime * 1f);
             Anim.SetTrigger("Heavy_Run1");
             Anim.ResetTrigger("Light_Run1");
             Anim.ResetTrigger("Normal_Run1");

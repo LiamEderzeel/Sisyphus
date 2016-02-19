@@ -85,9 +85,12 @@ public class playerInput : MonoBehaviour {
         letter.SetActive(false);
         _block.ActivatePhysics();
         _block.Nocolider();
+        _block._letterAnimation.StartLerp();
+        //yield return new WaitForSeconds(1);
         _block.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0,0,1f) * _force);
         _block.transform.parent = null;
         ChangeState(State.shooting);
+        //yield return null;
     }
 
     private void ToLetter()

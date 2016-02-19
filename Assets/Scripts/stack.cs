@@ -13,14 +13,38 @@ public class stack : MonoBehaviour {
     {
         get{return _stackSize;}
     }
+    private float _timer;
 
-    void Update ()
+    private void Start()
+    {
+        for(int i =0; i < 8; ++i)
+        {
+            CreateNew();
+        }
+        SetTimer();
+    }
+
+    private void Update ()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
             GameObject obj = Spawn();
             obj.transform.position += spawnPos;
         }
+
+        if(_stackSize < 10)
+        {
+            if(Time.time > _timer)
+            {
+            GameObject obj = Spawn();
+            obj.transform.position += spawnPos;
+                SetTimer();
+            }
+        }
+    }
+    private void SetTimer()
+    {
+        _timer = Time.time + 5f;
     }
 
     private int CountStack()
@@ -47,14 +71,6 @@ public class stack : MonoBehaviour {
         }
     }
 
-
-    private void Start()
-    {
-        for(int i =0; i < 8; ++i)
-        {
-            CreateNew();
-        }
-    }
 
     public void ActivatePhysics()
     {
